@@ -1,5 +1,4 @@
 //Business logic
-
 function wordCounter(text) {
   if (text.trim().length === 0) {
     return 0;
@@ -15,6 +14,11 @@ function wordCounter(text) {
 }
 
 function numberOfOccurrencesInText(word, text) {
+  
+  if(word.trim().length === 0) {
+    return 0;
+  }
+
   const textArray = text.split(" ");
   let wordCount = 0;
   textArray.forEach(function(element) {
@@ -26,7 +30,6 @@ function numberOfOccurrencesInText(word, text) {
 }
 
 // This project contains two functions that effectively remove bad words from text. One uses a boolean, the other uses comparative operators.
-
 function removeOffensiveWords(text) {
   const offensiveWords = [
     "zoinks",
@@ -50,6 +53,7 @@ function removeOffensiveWords(text) {
   return outputArr.join(" ")
 };
 
+
 // function removeBadWords(text) {
 //   const badWords = ["zoinks", "shucks", "shoot"];
 
@@ -63,3 +67,19 @@ function removeOffensiveWords(text) {
   
 //   return outputArray.join(" ");
 // };
+
+//User Interface
+
+function handleFormSubmission(event) {
+  event.preventDefault();
+  const passage = document.getElementById("text-passage").value;
+  const word = document.getElementById("word").value;
+  const wordCount = wordCounter(passage);
+  const occurrencesOfWord = numberOfOccurrencesInText(word, passage);
+  document.getElementById("total-count").innerText = wordCount;
+  document.getElementById("selected-count").innerText = occurrencesOfWord;
+}
+
+window.addEventListener("load", function() {
+  document.querySelector("form#word-counter").addEventListener("submit", handleFormSubmission);
+});
