@@ -40,15 +40,21 @@ function removeOffensiveWords(text) {
   const textArray = text.split(" ");
   let outputArr = []
   textArray.forEach(function(word) {
+
     let isOkay = true;
+
+    
     offensiveWords.forEach(function(offensiveWord) {
       if(word.toLowerCase().includes(offensiveWord.toLowerCase())) {
         isOkay = false;
       }
     })
+
+
     if(isOkay) {
       outputArr.push(word)
     }
+
   })
   return outputArr.join(" ")
 };
@@ -83,3 +89,25 @@ function handleFormSubmission(event) {
 window.addEventListener("load", function() {
   document.querySelector("form#word-counter").addEventListener("submit", handleFormSubmission);
 });
+
+function boldPassage(word, text) {
+  if ((text.trim().length === 0) || (word.trim().length === 0)) {
+    return null;
+  }
+  const p = document.createElement("p");
+  let textArray = text.split(" ");
+  textArray.forEach(function(element) {
+  if (word === element) {
+    const bold = document.createElement("strong");
+    bold.append(element);
+    p.append(bold);
+  } else {
+    p.append(element);
+  }
+  if (index !==(textArray.length - 1)) {
+    p.append(" ");
+    }
+  });
+  return p;
+  }
+

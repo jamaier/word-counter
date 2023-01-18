@@ -28,3 +28,13 @@ const word = "";
 const text = "red RED Red!";
 numberOfOccurrencesInText(word, text);
 Expected Output: 0
+
+Describe: boldPassage()
+
+test: "It should return null if the word or text are empty"
+code:
+const word = ""
+const text = ""
+boldPassage(word, text)
+Expected Output: null
+
