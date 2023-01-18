@@ -11,3 +11,12 @@
 **_const text = "hello there";_**
 **_wordCounter(text);_**
 **_Expected Output: 2_**
+
+
+Describe: removeOffensiveWords()
+
+test: "It should remove and offensive word."
+code:
+let text = "this is zoinks, muppeteer, biffaroni, and loopdaloop!";
+removeOffensiveWords(text)
+expected output: "this is and";

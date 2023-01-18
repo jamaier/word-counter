@@ -1,5 +1,7 @@
 //Business logic
 
+
+
 function wordCounter(text) {
   if (text.trim().length === 0) {
     return 0;
@@ -24,3 +26,40 @@ function numberOfOccurrencesInText(word, text) {
   });
   return wordCount;
 }
+
+function removeOffensiveWords(text) {
+  const offensiveWords = [
+    "zoinks",
+    "muppeteer",
+    "biffaroni",
+    "loopdaloop"
+  ]
+  const textArray = text.split(" ");
+  let outputArr = []
+  textArray.forEach(function(word) {
+    let isOkay = true;
+    offensiveWords.forEach(function(offensiveWord) {
+      if(word.toLowerCase().includes(offensiveWord.toLowerCase())) {
+        isOkay = false;
+      }
+    })
+    if(isOkay) {
+      outputArr.push(word)
+    }
+  })
+  return outputArr.join(" ")
+};
+
+function removeBadWords(text) {
+  const badWords = ["zoinks", "shucks", "shoot"];
+
+  let textArray = text.split(" ");
+  let outputArray = [];
+
+  textArray.forEach(function(word) {
+    if (!badWords.includes(word.toLowerCase())) 
+      outputArray.push(word);
+  })
+  
+  return outputArray.join(" ");
+};
