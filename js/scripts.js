@@ -18,6 +18,18 @@ function wordCounter(text) {
   return wordCount;
 }
 
+function createULFromArray(theArray) {
+  let ul = document.createElement("ul")
+
+  theArray.forEach(function(element) {
+    let li = document.createElement("li")
+    li.innerText = element
+    ul.prepend(li)
+  })
+
+  return ul;
+}
+
 function showListOfMostCommon(text) {
   let textArray = text.split(" ") 
   let uniqueWords = []
@@ -91,8 +103,11 @@ function handleFormSubmission(event) {
   const word = document.getElementById("word").value;
   const wordCount = wordCounter(passage);
   const occurrencesOfWord = numberOfOccurrencesInText(word, passage);
+  const listOfMostCommon = showListOfMostCommon(passage);
   document.getElementById("total-count").innerText = wordCount;
   document.getElementById("selected-count").innerText = occurrencesOfWord;
+  document.querySelector("div#array-passage").innerText = null;
+  document.querySelector("div#array-passage").append(createULFromArray(listOfMostCommon));
   let boldedPassage = boldPassage(word, passage);
   if (boldedPassage) {
     document.querySelector("div#bolded-passage").innerText = null;
@@ -100,21 +115,9 @@ function handleFormSubmission(event) {
   } else {
     document.querySelector("div#bolded-passage").innerText = null;
   }
-  printArrayToSite(showListOfMostCommon(passage))
 }
 
-function printArrayToSite(theArray) {
-  let ul = document.createElement("ul")
 
-  theArray.forEach(function(element) {
-    let li = document.createElement("li")
-    li.innerText = element
-    ul.prepend(li)
-  })
-
-  document.getElementById("array-passage").innerText = ""
-  document.getElementById("array-passage").append(ul)
-}
 
 
 
