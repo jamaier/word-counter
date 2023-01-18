@@ -18,6 +18,21 @@ function wordCounter(text) {
   return wordCount;
 }
 
+function showListOfMostCommon(text) {
+  let textArray = text.split(" ") 
+  let uniqueWords = []
+  textArray.forEach(function(word) {
+    if(!uniqueWords.includes(word)) {
+      uniqueWords.push(word)
+    }
+  })
+  let result = []
+  uniqueWords.forEach(function(word) {
+    result.push(word + ": " + numberOfOccurrencesInText(word, text))
+  })
+  return result;
+}
+
 function numberOfOccurrencesInText(word, text) {
   if (isEmpty(word)) {
     return 0;
