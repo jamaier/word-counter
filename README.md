@@ -38,3 +38,10 @@ const text = ""
 boldPassage(word, text)
 Expected Output: null
 
+Describe: printArrayToSite()
+Test: "It should show an array on the site"
+code:
+const array = ["word", "this", "that"]
+printArrayToSite(array)
+Expected Output: 
+

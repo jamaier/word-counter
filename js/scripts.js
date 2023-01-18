@@ -95,11 +95,28 @@ function handleFormSubmission(event) {
   document.getElementById("selected-count").innerText = occurrencesOfWord;
   let boldedPassage = boldPassage(word, passage);
   if (boldedPassage) {
+    document.querySelector("div#bolded-passage").innerText = null;
     document.querySelector("div#bolded-passage").append(boldedPassage);
   } else {
     document.querySelector("div#bolded-passage").innerText = null;
   }
+  printArrayToSite(showListOfMostCommon(passage))
 }
+
+function printArrayToSite(theArray) {
+  let ul = document.createElement("ul")
+
+  theArray.forEach(function(element) {
+    let li = document.createElement("li")
+    li.innerText = element
+    ul.prepend(li)
+  })
+
+  document.getElementById("array-passage").innerText = ""
+  document.getElementById("array-passage").append(ul)
+}
+
+
 
 window.addEventListener("load", function () {
   document
