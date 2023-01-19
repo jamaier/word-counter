@@ -34,15 +34,21 @@ function showListOfMostCommon(text) {
   let textArray = text.split(" ") 
   let uniqueWords = []
   textArray.forEach(function(word) {
-    if(!uniqueWords.includes(word)) {
-      uniqueWords.push(word)
+    if(!uniqueWords.includes(word.toLowerCase())) {
+      uniqueWords.push(word.toLowerCase())
     }
   })
   let result = []
   uniqueWords.forEach(function(word) {
-    result.push(word + ": " + numberOfOccurrencesInText(word, text))
+    result.push("" + numberOfOccurrencesInText(word, text) + " " + word + ": ")
   })
-  return result;
+  result.sort()
+  let newresult = []
+  result.forEach(function(element) {
+    let thing = element.split(" ")
+    newresult.push("" + thing[1] + " " + thing[0])
+  })
+  return newresult;
 }
 
 function numberOfOccurrencesInText(word, text) {
@@ -62,9 +68,12 @@ function numberOfOccurrencesInText(word, text) {
 
 // This project contains two functions that effectively remove bad words from text. One uses a boolean, the other uses comparative operators.
 function removeOffensiveWords(text) {
+
   const offensiveWords = ["zoinks", "muppeteer", "biffaroni", "loopdaloop"];
+
   const textArray = text.split(" ");
   let outputArr = [];
+
   textArray.forEach(function (word) {
     let isOkay = true;
 
